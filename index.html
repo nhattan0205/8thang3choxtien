@@ -14,27 +14,21 @@ background:linear-gradient(135deg,#ff5f9e,#ff85b3,#ffc0cb);
 text-align:center;
 }
 
-/* khung */
-
 .container{
 position:absolute;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
+width:80%;
 }
-
-/* tiêu đề */
 
 h1{
 color:white;
-font-size:45px;
-text-shadow:0 0 10px #ff4d88;
+font-size:40px;
 }
 
-/* hộp quà */
-
 #gift{
-font-size:100px;
+font-size:90px;
 cursor:pointer;
 transition:0.3s;
 }
@@ -43,21 +37,18 @@ transition:0.3s;
 transform:scale(1.2);
 }
 
-/* chữ */
-
 #message{
 margin-top:25px;
 font-size:22px;
 color:white;
-max-width:650px;
 line-height:1.6;
 }
 
-/* hoa rơi */
+/* hoa */
 
 .flower{
 position:fixed;
-top:-10px;
+top:-20px;
 animation:fall linear forwards;
 }
 
@@ -67,12 +58,11 @@ transform:translateY(110vh);
 }
 }
 
-/* trái tim */
+/* tim */
 
 .heart{
 position:fixed;
-bottom:-10px;
-font-size:24px;
+bottom:-20px;
 animation:float 4s linear forwards;
 }
 
@@ -92,7 +82,7 @@ opacity:0;
 
 <h1>🌸 Chúc mừng ngày 8/3 🌸</h1>
 
-<div id="gift" onclick="openGift()">🎁</div>
+<div id="gift">🎁</div>
 
 <div id="message"></div>
 
@@ -100,30 +90,40 @@ opacity:0;
 
 <script>
 
-let text=`Chúc cô gái một ngày 8/3 luôn tươi như hoa, khỏe như voi và yêu đời như chim sẻ nhé. 
-Luôn hạnh phúc, vui vẻ bên gia đình và bạn bè nhaaa, hăm chỉ một ngày này mà là mọi ngày trong năm lunnnn ❤️
+let text = `Chúc cô gái một ngày 8/3 luôn tươi như hoa, khỏe như voi và yêu đời như chim sẻ nhé.
+Luôn hạnh phúc, vui vẻ bên gia đình và bạn bè nhaaa ❤️
 
-Nếu thế giới này có 10 thiên thần: 5 thiên thần đang chơi đùa, 4 thiên thần đang nói chuyện và 1 thiên thần đang đọc. 
+Nếu thế giới này có 10 thiên thần: 5 thiên thần đang chơi đùa, 4 thiên thần đang nói chuyện và 1 thiên thần đang đọc.
 Mặc dù tui hăm biet nói những lời ngọt ngào, hợi ngại nhưng mà tui sẽ luôn ở đây và hi vọng sẽ lunn là người làm cho xtien vuii mỗi khi bùnnn.`
 
-let i=0
+let index = 0
+let typing = false
+
+document.getElementById("gift").onclick = function(){
+
+this.innerHTML = "💝"
+
+if(!typing){
+typing = true
+typeWriter()
+}
+
+for(let i=0;i<20;i++){
+createHeart()
+}
+
+}
 
 function typeWriter(){
-if(i<text.length){
-document.getElementById("message").innerHTML+=text.charAt(i)
-i++
-setTimeout(typeWriter,40)
-}
-}
 
-function openGift(){
+if(index < text.length){
 
-document.getElementById("gift").innerHTML="💝"
+document.getElementById("message").innerHTML += text[index]
 
-typeWriter()
+index++
 
-for(let i=0;i<25;i++){
-createHeart()
+setTimeout(typeWriter,35)
+
 }
 
 }
@@ -139,19 +139,19 @@ flower.innerHTML="🌸"
 
 flower.style.left=Math.random()*100+"vw"
 flower.style.fontSize=(15+Math.random()*25)+"px"
-flower.style.animationDuration=(4+Math.random()*5)+"s"
+flower.style.animationDuration=(3+Math.random()*4)+"s"
 
 document.body.appendChild(flower)
 
 setTimeout(()=>{
 flower.remove()
-},8000)
+},7000)
 
 }
 
 setInterval(createFlower,300)
 
-/* trái tim */
+/* tim */
 
 function createHeart(){
 
